@@ -1,0 +1,210 @@
+/* Base Layout (reusing dashboard gap and padding) */
+.review-page {
+  padding-bottom: 40px;
+}
+
+/* Table Enhancements */
+.table-responsive {
+  overflow-x: auto;
+  margin-top: 10px;
+}
+
+.review-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+}
+
+.review-table th {
+  background: #f9fafb;
+  color: #6b7280;
+  font-weight: 600;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 16px 20px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.review-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid #f3f4f6;
+  vertical-align: middle;
+  font-size: 14px;
+  color: #111827;
+}
+
+.review-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.review-table tbody tr:hover {
+  background-color: #f9fafb;
+}
+
+/* Employee Cell (Avatar + Details) */
+.employee-cell {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.emp-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #e5e7eb;
+}
+
+.emp-avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e0e7ff;
+  color: #4f46e5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.emp-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.emp-name {
+  font-weight: 600;
+  color: #111827;
+}
+
+.emp-email {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* Badges & Text */
+.leave-type-badge {
+  font-weight: 500;
+  color: #374151;
+}
+
+.leave-dates {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.to-arrow {
+  color: #9ca3af;
+}
+
+.days-count {
+  display: block;
+  font-size: 12px;
+  color: #6b7280;
+  margin-top: 4px;
+}
+
+.deduction-amount {
+  font-weight: 500;
+  color: #ef4444;
+}
+
+/* Status Badges */
+.status-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+.status-badge.pending {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.status-badge.approved {
+  background: #d1fae5;
+  color: #059669;
+}
+
+.status-badge.rejected {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* Elegant Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-outline-approve,
+.btn-outline-reject {
+  background: transparent;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-approve {
+  border: 1px solid #10b981;
+  color: #10b981;
+}
+
+.btn-outline-approve:hover {
+  background: #10b981;
+  color: white;
+}
+
+.btn-outline-reject {
+  border: 1px solid #ef4444;
+  color: #ef4444;
+}
+
+.btn-outline-reject:hover {
+  background: #ef4444;
+  color: white;
+}
+
+/* Empty/Loading States */
+.empty-state {
+  text-align: center;
+  padding: 40px !important;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.loading-text {
+  color: #6b7280;
+  padding: 20px 0;
+}
+
+/* 🔹 Active Filter Cards styling */
+.active-filter-pending {
+  border: 1.5px solid #d97706 !important;
+  background: #fffbeb !important;
+  box-shadow: 0 4px 10px rgba(217, 119, 6, 0.08) !important;
+}
+
+.active-filter-approved {
+  border: 1.5px solid #059669 !important;
+  background: #ecfdf5 !important;
+  box-shadow: 0 4px 10px rgba(5, 150, 105, 0.08) !important;
+}
+
+.active-filter-rejected {
+  border: 1.5px solid #dc2626 !important;
+  background: #fdf2f2 !important;
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.08) !important;
+}

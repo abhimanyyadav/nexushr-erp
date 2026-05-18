@@ -1,0 +1,120 @@
+/* Container */
+.apply-container {
+  padding: 24px;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+/* Layout */
+.apply-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+/* Card */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid #eee;
+}
+
+/* Form */
+form label {
+  display: block;
+  margin-top: 12px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+textarea {
+  min-height: 100px;
+  resize: none;
+}
+
+/* Row */
+.row {
+  display: flex;
+  gap: 12px;
+}
+
+/* Buttons */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn.primary {
+  background: #7c3aed;
+  color: #fff;
+}
+
+.btn.secondary {
+  background: #f3f4f6;
+}
+
+/* Sidebar */
+.sidebar .card {
+  margin-bottom: 20px;
+}
+
+.holiday-preview-list {
+  margin-top: 15px;
+}
+
+.h-item-preview {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f9fafb;
+}
+
+.h-item-preview:last-child {
+  border-bottom: none;
+}
+
+.h-date-prev {
+  font-size: 0.75rem;
+  font-weight: 700;
+  min-width: 50px;
+  text-transform: uppercase;
+}
+
+.h-title-prev {
+  font-size: 0.85rem;
+  color: #4b5563;
+}
+
+.h-item-preview.res .h-date-prev {
+  color: #ef4444;
+}
+
+.h-item-preview.unres .h-date-prev {
+  color: #3b82f6;
+}

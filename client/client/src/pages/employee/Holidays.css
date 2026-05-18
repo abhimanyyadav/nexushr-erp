@@ -1,0 +1,141 @@
+.year-calendar-container {
+  padding: 20px;
+  background: white;
+  min-height: 100vh;
+}
+
+.calendar-header-main {
+  text-align: center;
+  color: #1a365d;
+  border-bottom: 2px solid #e2e8f0;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+}
+
+.calendar-header-main h1 {
+  font-size: 2rem;
+  letter-spacing: 2px;
+  font-weight: 800;
+}
+
+.year-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.month-box {
+  border: 1px solid #cbd5e0;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.month-title {
+  background: #f8fafc;
+  margin: 0;
+  padding: 8px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #2d3748;
+  border-bottom: 1px solid #cbd5e0;
+}
+
+.mini-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  font-size: 0.75rem;
+}
+
+.mini-weekday {
+  padding: 5px 0;
+  text-align: center;
+  background: #2d3748;
+  color: white;
+  font-weight: 600;
+}
+
+.mini-weekday.sun {
+  background: #c53030;
+}
+
+.mini-day {
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 0.1px solid #edf2f7;
+  border-right: 0.1px solid #edf2f7;
+  font-weight: 500;
+}
+
+.mini-day.empty {
+  background: #f7fafc;
+}
+
+.sun-text {
+  color: #c53030;
+  font-weight: 700;
+}
+
+.res-h {
+  background: #fed7d7;
+  color: #c53030;
+  font-weight: 800;
+}
+
+.unres-h {
+  background: #bee3f8;
+  color: #2b6cb0;
+  font-weight: 800;
+}
+
+.adm-ptr {
+  cursor: pointer;
+}
+
+.adm-ptr:hover {
+  background: #edf2f7;
+}
+
+.calendar-footer {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px;
+  background: #f8fafc;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.footer-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.dot {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.dot.red { background: #fed7d7; border: 1px solid #feb2b2; }
+.dot.blue { background: #bee3f8; border: 1px solid #bee3f8; }
+.text.red { color: #c53030; }
+
+@media (max-width: 1200px) {
+  .year-grid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 900px) {
+  .year-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .year-grid { grid-template-columns: 1fr; }
+}
