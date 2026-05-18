@@ -8,7 +8,7 @@ const ManageHolidays = () => {
 
   const fetchHolidays = async () => {
     try {
-      const res = await fetch("http://localhost:8080/api/holiday", {
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/holiday", {
         credentials: "include"
       });
       const data = await res.json();
@@ -27,7 +27,7 @@ const ManageHolidays = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("http://localhost:8080/api/holiday", {
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/holiday", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -49,7 +49,7 @@ const ManageHolidays = () => {
   const handleDelete = async (id) => {
     if (!window.confirm("Delete this holiday?")) return;
     try {
-      const res = await fetch(`http://localhost:8080/api/holiday/${id}`, {
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + `/api/holiday/${id}`, {
         method: "DELETE",
         credentials: "include"
       });

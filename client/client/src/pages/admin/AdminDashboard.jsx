@@ -27,7 +27,7 @@ function AdminDashboard() {
   const fetchDashboardData = async () => {
     try {
       // 1. Fetch Stats
-      const resStats = await fetch("http://localhost:8080/api/admin/stats", {
+      const resStats = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/admin/stats", {
         credentials: "include"
       });
       if (resStats.ok) {
@@ -36,7 +36,7 @@ function AdminDashboard() {
       }
 
       // 2. Fetch Announcements
-      const resAnnounce = await fetch("http://localhost:8080/api/announcements", {
+      const resAnnounce = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/announcements", {
         credentials: "include"
       });
       if (resAnnounce.ok) {
@@ -59,7 +59,7 @@ function AdminDashboard() {
     if (!newNotice.title || !newNotice.content) return;
     setSubmitting(true);
     try {
-      const res = await fetch("http://localhost:8080/api/announcements", {
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/announcements", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newNotice),
@@ -81,7 +81,7 @@ function AdminDashboard() {
   const handleDeleteAnnouncement = async (id) => {
     if (!window.confirm("Are you sure you want to delete this notice?")) return;
     try {
-      const res = await fetch(`http://localhost:8080/api/announcements/${id}`, {
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + `/api/announcements/${id}`, {
         method: "DELETE",
         credentials: "include"
       });

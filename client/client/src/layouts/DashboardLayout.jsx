@@ -15,7 +15,7 @@ function DashboardLayout() {
   // Fetch current user details
   const fetchUser = async () => {
     try {
-      const res = await fetch("http://localhost:8080/api/auth/me", {
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/auth/me", {
         credentials: "include",
       });
       if (res.ok) {
@@ -30,7 +30,7 @@ function DashboardLayout() {
   // Fetch notifications list
   const fetchNotifications = async () => {
     try {
-      const res = await fetch("http://localhost:8080/api/notifications", {
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/notifications", {
         credentials: "include",
       });
       if (res.ok) {
@@ -53,7 +53,7 @@ function DashboardLayout() {
 
   const markAllRead = async () => {
     try {
-      const res = await fetch("http://localhost:8080/api/notifications/read-all", {
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/notifications/read-all", {
         method: "PUT",
         credentials: "include",
       });
@@ -68,7 +68,7 @@ function DashboardLayout() {
 
   const markSingleRead = async (id) => {
     try {
-      const res = await fetch(`http://localhost:8080/api/notifications/${id}/read`, {
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + `/api/notifications/${id}/read`, {
         method: "PUT",
         credentials: "include",
       });
@@ -85,7 +85,7 @@ function DashboardLayout() {
 
   const handleLogout = async () => {
     try {
-      const res = await fetch("http://localhost:8080/api/auth/logout", {
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/auth/logout", {
         method: "GET",
         credentials: "include",
       });

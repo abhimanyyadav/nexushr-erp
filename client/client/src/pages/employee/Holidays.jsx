@@ -9,7 +9,7 @@ const Holidays = () => {
 
   const fetchHolidays = async () => {
     try {
-      const res = await fetch("http://localhost:8080/api/holiday", { credentials: "include" });
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/holiday", { credentials: "include" });
       const data = await res.json();
       if (res.ok) setHolidays(data);
     } catch (err) { console.log(err); }
@@ -18,7 +18,7 @@ const Holidays = () => {
 
   const fetchUser = async () => {
     try {
-      const res = await fetch("http://localhost:8080/api/auth/me", { credentials: "include" });
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/auth/me", { credentials: "include" });
       const data = await res.json();
       if (res.ok) setUser(data);
     } catch (err) { console.log(err); }
@@ -33,7 +33,7 @@ const Holidays = () => {
     if (!day || user?.role !== "admin") return;
     const clickedDate = new Date(targetYear, month, day);
     try {
-      const res = await fetch("http://localhost:8080/api/holiday/toggle", {
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/holiday/toggle", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ date: clickedDate, title: "Holiday" }),

@@ -10,7 +10,7 @@ const ReviewLeaves = () => {
   // 🔹 Fetch all leave requests
   const fetchLeaves = () => {
     setLoading(true);
-    fetch("http://localhost:8080/api/leave", {
+    fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/leave", {
       credentials: "include"
     })
       .then(res => {
@@ -34,7 +34,7 @@ const ReviewLeaves = () => {
   // 🔹 Update Leave Status
   const updateStatus = async (id, status) => {
     try {
-      const res = await fetch(`http://localhost:8080/api/leave/${id}`, {
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + `/api/leave/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -128,7 +128,7 @@ const ReviewLeaves = () => {
                     const employeeName = user.name || "Unknown User";
                     const employeeEmail = user.email || "No email";
                     const profilePic = user.profilePic 
-                      ? `http://localhost:8080/uploads/${user.profilePic}`
+                      ? (window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + `/uploads/${user.profilePic}`
                       : null;
                     const initial = employeeName.charAt(0).toUpperCase();
 

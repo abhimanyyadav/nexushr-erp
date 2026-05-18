@@ -14,7 +14,7 @@ const ManageTasks = () => {
 
   const fetchTasks = async () => {
     try {
-      const res = await fetch("http://localhost:8080/api/tasks", {
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/tasks", {
         credentials: "include",
       });
       const data = await res.json();
@@ -31,7 +31,7 @@ const ManageTasks = () => {
 
   const fetchEmployees = async () => {
     try {
-      const res = await fetch("http://localhost:8080/api/auth/employee", {
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/auth/employee", {
         credentials: "include",
       });
       const data = await res.json();
@@ -63,7 +63,7 @@ const ManageTasks = () => {
     if (!isDraft && !assignedTo) return alert("Please select an assignee, or click 'Save as Draft'.");
 
     try {
-      const res = await fetch("http://localhost:8080/api/tasks", {
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/tasks", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -93,7 +93,7 @@ const ManageTasks = () => {
 
   const updateTask = async (taskId, updates) => {
     try {
-      const res = await fetch(`http://localhost:8080/api/tasks/${taskId}/status`, {
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + `/api/tasks/${taskId}/status`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

@@ -30,7 +30,7 @@ const ManageEmployees = () => {
   // ================= FETCH =================
 
   const fetchEmployees = () => {
-    fetch("http://localhost:8080/api/auth/employee", {
+    fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/auth/employee", {
       credentials: "include"
     })
       .then(res => res.json())
@@ -141,7 +141,7 @@ const ManageEmployees = () => {
       }
 
       const res = await fetch(
-        "http://localhost:8080/api/auth/employee",
+        (window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/auth/employee",
         {
           method: "POST",
           body: formData,
@@ -169,7 +169,7 @@ const ManageEmployees = () => {
   const handleUpdate = async () => {
     try {
       const res = await fetch(
-        `http://localhost:8080/api/auth/employee/${selectedEmployee._id}`,
+        (window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + `/api/auth/employee/${selectedEmployee._id}`,
         {
           method: "PUT",
           headers: {
@@ -208,7 +208,7 @@ const ManageEmployees = () => {
 
     try {
       const res = await fetch(
-        `http://localhost:8080/api/auth/employee/${employeeId}`,
+        (window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + `/api/auth/employee/${employeeId}`,
         {
           method: "DELETE",
           credentials: "include"

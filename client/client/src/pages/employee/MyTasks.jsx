@@ -7,7 +7,7 @@ const MyTasks = () => {
 
   const fetchMyTasks = async () => {
     try {
-      const res = await fetch("http://localhost:8080/api/tasks/my", {
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/tasks/my", {
         credentials: "include",
       });
       const data = await res.json();
@@ -30,7 +30,7 @@ const MyTasks = () => {
 
   const updateStatus = async (taskId, newStatus) => {
     try {
-      const res = await fetch(`http://localhost:8080/api/tasks/${taskId}/status`, {
+      const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + `/api/tasks/${taskId}/status`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         credentials: "include",

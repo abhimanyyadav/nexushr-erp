@@ -21,7 +21,7 @@ function Sidebar({ isOpen, onClose }) {
       try {
 
         const res = await fetch(
-          "http://localhost:8080/api/auth/me",
+          (window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/auth/me",
           {
             credentials: "include",
           }
@@ -229,7 +229,7 @@ function Sidebar({ isOpen, onClose }) {
         <img
           src={
             user?.profilePic 
-              ? (user.profilePic.startsWith("http") ? user.profilePic : `http://localhost:8080/uploads/${user.profilePic}`)
+              ? (user.profilePic.startsWith("http") ? user.profilePic : (window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + `/uploads/${user.profilePic}`)
               : "https://via.placeholder.com/40"
           }
           alt="user"

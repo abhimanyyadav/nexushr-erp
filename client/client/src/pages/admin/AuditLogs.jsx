@@ -11,7 +11,7 @@ const AuditLogs = () => {
   useEffect(() => {
     const fetchLogs = async () => {
       try {
-        const res = await fetch("http://localhost:8080/api/admin/audit-logs", {
+        const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/admin/audit-logs", {
           credentials: "include"
         });
         if (res.ok) {

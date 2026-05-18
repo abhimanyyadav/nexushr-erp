@@ -27,7 +27,7 @@ function Profile() {
       try {
 
         const res = await fetch(
-          "http://localhost:8080/api/auth/me",
+          (window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/auth/me",
           {
             credentials: "include",
           }
@@ -96,7 +96,7 @@ function Profile() {
       // 🔹 Update Name + Email
 
       const res = await fetch(
-        "http://localhost:8080/api/auth/update-profile",
+        (window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/auth/update-profile",
         {
           method: "PUT",
           headers: {
@@ -126,7 +126,7 @@ function Profile() {
         formData.append("profilePic", selectedFile);
 
         const photoRes = await fetch(
-          "http://localhost:8080/api/auth/update-profile-photo",
+          (window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/auth/update-profile-photo",
           {
             method: "PUT",
             credentials: "include",
@@ -218,7 +218,7 @@ function Profile() {
             src={
               preview ||
               (user.profilePic 
-                ? (user.profilePic.startsWith("http") ? user.profilePic : `http://localhost:8080/uploads/${user.profilePic}`)
+                ? (user.profilePic.startsWith("http") ? user.profilePic : (window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + `/uploads/${user.profilePic}`)
                 : "https://via.placeholder.com/100")
             }
             alt="profile"

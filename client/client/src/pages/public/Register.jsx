@@ -45,7 +45,7 @@ function Register() {
       }
 
       const res = await fetch(
-        "http://localhost:8080/api/auth/register",
+        (window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/auth/register",
         {
           method: "POST",
           body: formData, // ❌ DO NOT use JSON here

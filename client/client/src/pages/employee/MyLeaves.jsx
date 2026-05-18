@@ -11,7 +11,7 @@ const MyLeaves = () => {
   useEffect(() => {
 
     fetch(
-      "http://localhost:8080/api/leave/my-leaves",
+      (window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/leave/my-leaves",
       {
         credentials: "include"
       }

@@ -11,7 +11,7 @@ function ResetPassword() {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    const res = await fetch(`http://localhost:8080/api/auth/reset-password/${token}`, {
+    const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + `/api/auth/reset-password/${token}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"

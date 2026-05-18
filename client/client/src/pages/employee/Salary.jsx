@@ -11,11 +11,11 @@ const Salary = () => {
   useEffect(() => {
     const fetchSalaryAndLeaves = async () => {
       try {
-        const resSalary = await fetch("http://localhost:8080/api/auth/me", { credentials: "include" });
+        const resSalary = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/auth/me", { credentials: "include" });
         const dataSalary = await resSalary.json();
         if (resSalary.ok) setSalaryData(dataSalary);
 
-        const resLeaves = await fetch("http://localhost:8080/api/leave/my-leaves", { credentials: "include" });
+        const resLeaves = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/leave/my-leaves", { credentials: "include" });
         const dataLeaves = await resLeaves.json();
         if (resLeaves.ok) setLeaves(dataLeaves);
       } catch (err) { console.log(err); }

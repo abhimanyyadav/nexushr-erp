@@ -6,7 +6,7 @@ const ProtectedRoute = ({ children, role }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:8080/api/auth/me", {
+    fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/auth/me", {
       credentials: "include",
     })
       .then(res => res.json())

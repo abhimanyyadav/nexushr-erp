@@ -16,7 +16,7 @@ function Dashboard() {
     const fetchData = async () => {
       try {
         // 🔹 1. Fetch User Session Profile
-        const resAuth = await fetch("http://localhost:8080/api/auth/dashboard", {
+        const resAuth = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/auth/dashboard", {
           credentials: "include",
         });
         if (!resAuth.ok) {
@@ -27,7 +27,7 @@ function Dashboard() {
         setUser(dataAuth.user);
 
         // 🔹 2. Fetch Full Employee Data (for leave balances)
-        const resMe = await fetch("http://localhost:8080/api/auth/me", {
+        const resMe = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/auth/me", {
           credentials: "include",
         });
         if (resMe.ok) {
@@ -36,7 +36,7 @@ function Dashboard() {
         }
 
         // 🔹 3. Fetch Leave Stats
-        const resStats = await fetch("http://localhost:8080/api/leave/stats", {
+        const resStats = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/leave/stats", {
           credentials: "include",
         });
         if (resStats.ok) {
@@ -45,7 +45,7 @@ function Dashboard() {
         }
 
         // 🔹 4. Fetch Recent Leaves
-        const resLeaves = await fetch("http://localhost:8080/api/leave/my-leaves", {
+        const resLeaves = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/leave/my-leaves", {
           credentials: "include",
         });
         if (resLeaves.ok) {
@@ -57,7 +57,7 @@ function Dashboard() {
         }
 
         // 🔹 5. Fetch Announcements
-        const resAnnounce = await fetch("http://localhost:8080/api/announcements", {
+        const resAnnounce = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/announcements", {
           credentials: "include",
         });
         if (resAnnounce.ok) {

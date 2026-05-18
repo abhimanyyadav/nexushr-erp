@@ -36,11 +36,11 @@ const ApplyLeave = () => {
   useEffect(() => {
     const fetchBalanceAndHolidays = async () => {
       try {
-        const resB = await fetch("http://localhost:8080/api/leave/balance", { credentials: "include" });
+        const resB = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/leave/balance", { credentials: "include" });
         const dataB = await resB.json();
         if (resB.ok) setBalance(dataB);
 
-        const resH = await fetch("http://localhost:8080/api/holiday", { credentials: "include" });
+        const resH = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/holiday", { credentials: "include" });
         const dataH = await resH.json();
         if (resH.ok) setHolidays(dataH);
 
@@ -143,7 +143,7 @@ const ApplyLeave = () => {
       }
 
       const res = await fetch(
-        "http://localhost:8080/api/leave/apply",
+        (window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/leave/apply",
         {
           method: "POST",
           credentials: "include",
