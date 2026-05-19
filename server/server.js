@@ -61,7 +61,7 @@ app.use(
     cookie: {
       httpOnly: true,
       secure: isProd, // True on HTTPS production environment
-      sameSite: isProd ? "none" : "lax", // Cross-site support required for Vercel/Render
+      sameSite: "lax", // Set to 'lax' for unified domain first-party session stability
       maxAge: 24 * 60 * 60 * 1000 // 24 hours
     },
   })
