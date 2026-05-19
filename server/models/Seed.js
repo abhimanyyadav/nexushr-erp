@@ -73,6 +73,8 @@ const seedData = async () => {
 
         name: `Employee ${i}`,
 
+        employeeId: `EMP-${i.toString().padStart(3, '0')}`,
+
         department:
           departments[
             Math.floor(
