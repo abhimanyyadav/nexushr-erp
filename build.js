@@ -15,10 +15,10 @@ function runCommand(command, dir) {
 }
 
 // 1. Install root dependencies
-runCommand("npm install");
+runCommand("npm install --include=dev");
 
 // 2. Install client dependencies
-runCommand("npm install", "client/client");
+runCommand("npm install --include=dev", "client/client");
 
 // 3. Build client
 runCommand("npm run build", "client/client");
