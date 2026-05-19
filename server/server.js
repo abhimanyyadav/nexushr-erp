@@ -11,22 +11,33 @@ const taskRoutes = require("./routes/taskRoutes");
 
 const app = express();
 
-// ================= CORS (DYNAMIC) =================
+// ================= CORS (BULLETPROOF & DYNAMIC) =================
 const allowedOrigins = [
   "http://localhost:5173",
   "http://localhost:5174",
   process.env.FRONTEND_URL
-].filter(Boolean);
+].map(url => url ? url.trim().replace(/\/$/, "") : null).filter(Boolean);
 
 app.use(
   cors({
     origin: (origin, callback) => {
       if (!origin) return callback(null, true);
-      // Allow exact match or if custom FRONTEND_URL is set to allow all origins safely for CORS
-      if (allowedOrigins.includes(origin) || allowedOrigins.includes("*") || allowedOrigins.some(o => origin.startsWith(o))) {
-        return callback(null, true);
+      
+      const cleanOrigin = origin.trim().replace(/\/$/, "");
+      
+      // Check if it matches config list, or is a Vercel deployment, or a local host port
+      const isAllowed = 
+        allowedOrigins.some(allowed => {
+          const cleanAllowed = allowed.replace(/\/$/, "");
+          return cleanOrigin === cleanAllowed || cleanOrigin.startsWith(cleanAllowed) || cleanAllowed.startsWith(cleanOrigin);
+        }) ||
+        cleanOrigin.endsWith(".vercel.app") || // Auto-allow all Vercel domains for simplicity
+        cleanOrigin.includes("localhost");     // Auto-allow all localhost ports
+
+      if (isAllowed) {
+        callback(null, true);
       } else {
-        return callback(new Error("Not allowed by CORS"));
+        callback(null, false); // Deny CORS cleanly without throwing 500 errors
       }
     },
     credentials: true,
