@@ -1,4 +1,11 @@
 {
+  "name": "nexushr-erp-root",
+  "version": "1.0.0",
+  "scripts": {
+    "install-all": "npm install && cd client/client && npm install && cd ../../server && npm install",
+    "build-client": "cd client/client && npm run build",
+    "build": "npm run install-all && npm run build-client"
+  },
   "dependencies": {
     "bootstrap": "^5.3.8"
   }

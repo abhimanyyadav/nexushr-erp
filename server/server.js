@@ -86,9 +86,16 @@ mongoose
   .then(() => console.log("MongoDB connected successfully to cloud database cluster"))
   .catch((err) => console.log("MongoDB connection error:", err));
 
-// ================= TEST ROUTE =================
-app.get("/", (req, res) => {
-  res.send("NexusHR ERP Server API running successfully!");
+// ================= SERVE FRONTEND STATIC FILES =================
+const path = require("path");
+app.use(express.static(path.join(__dirname, "../client/client/dist")));
+
+app.get("*", (req, res) => {
+  // Check if requested path is an API endpoint (so we don't accidentally serve index.html for broken API calls)
+  if (req.originalUrl.startsWith("/api")) {
+    return res.status(404).json({ message: "API endpoint not found" });
+  }
+  res.sendFile(path.join(__dirname, "../client/client/dist/index.html"));
 });
 
 // ================= START SERVER =================
