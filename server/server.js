@@ -90,7 +90,7 @@ mongoose
 const path = require("path");
 app.use(express.static(path.join(__dirname, "../client/client/dist")));
 
-app.get("*", (req, res) => {
+app.get("*all", (req, res) => {
   // Check if requested path is an API endpoint (so we don't accidentally serve index.html for broken API calls)
   if (req.originalUrl.startsWith("/api")) {
     return res.status(404).json({ message: "API endpoint not found" });
