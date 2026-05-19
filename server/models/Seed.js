@@ -5,7 +5,8 @@ const User = require("./User");
 const Employee = require("./Employee");
 const Leave = require("./Leave");
 // 🔹 MongoDB Connection
-mongoose.connect("mongodb://127.0.0.1:27017/authDB");
+const mongoURI = process.env.MONGO_URI || "mongodb://127.0.0.1:27017/authDB";
+mongoose.connect(mongoURI);
 
 const seedData = async () => {
 
