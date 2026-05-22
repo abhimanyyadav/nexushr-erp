@@ -47,6 +47,12 @@ app.use(
 // ================= BODY PARSER =================
 app.use(express.json());
 
+// ================= REQUEST LOGGER =================
+app.use((req, res, next) => {
+  console.log(`[REQUEST] ${req.method} ${req.originalUrl}`);
+  next();
+});
+
 // ================= SESSION (PRODUCTION READY) =================
 const isProd = process.env.NODE_ENV === "production";
 if (isProd) {
