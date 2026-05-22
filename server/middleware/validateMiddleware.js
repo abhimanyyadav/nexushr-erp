@@ -14,6 +14,7 @@ module.exports = (schema) => {
 
       // 🔹 If validation fails
       if (error) {
+        console.log("Validation failed details:", error.details.map(err => err.message));
         return res.status(400).json({
           message: error.details.map(err => err.message).join(", ")
         });
