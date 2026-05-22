@@ -1,8 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import "./Hero.css";
 
 const Hero = () => {
+  const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
+
+  const handleButtonClick = (e) => {
+    e.preventDefault();
+    setShowModal(true);
+  };
+
+  const handleProceed = () => {
+    setShowModal(false);
+    navigate("/login");
+  };
+
   return (
     <section className="hero">
 
@@ -37,7 +50,7 @@ const Hero = () => {
           <Link
             to="/login"
             className="btn-primary"
-            onClick={() => alert("Login first")}
+            onClick={handleButtonClick}
           >
             Access Dashboard →
           </Link>
@@ -45,7 +58,7 @@ const Hero = () => {
           <Link
             to="/login"
             className="btn-secondary"
-            onClick={() => alert("Login first")}
+            onClick={handleButtonClick}
           >
             Start Free Trial
           </Link>
@@ -78,6 +91,27 @@ const Hero = () => {
         </div>
 
       </div>
+
+      {/* Custom Premium Modal Popup */}
+      {showModal && (
+        <div className="modal-overlay" onClick={() => setShowModal(false)}>
+          <div className="modal-card" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-icon">🔒</div>
+            <h2 className="modal-title">Authentication Required</h2>
+            <p className="modal-text">
+              Please log in to your account first to access the dashboard and tools.
+            </p>
+            <div className="modal-actions">
+              <button className="modal-btn modal-btn-primary" onClick={handleProceed}>
+                Log In Now
+              </button>
+              <button className="modal-btn modal-btn-secondary" onClick={() => setShowModal(false)}>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
 
     </section>
   );
