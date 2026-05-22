@@ -118,3 +118,186 @@ textarea {
 .h-item-preview.unres .h-date-prev {
   color: #3b82f6;
 }
+
+/* ================================================= */
+/* MINI INTERACTIVE CALENDAR STYLING */
+/* ================================================= */
+
+.mini-calendar-card {
+  padding: 14px;
+  background: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.mini-calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.cal-nav-btn {
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  color: #4b5563;
+  transition: all 0.2s;
+}
+
+.cal-nav-btn:hover {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+}
+
+.cal-month-title {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1f2937;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mini-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  font-size: 0.7rem;
+  margin-bottom: 14px;
+}
+
+.mini-cal-weekday {
+  text-align: center;
+  font-weight: 700;
+  color: #6b7280;
+  padding: 4px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.mini-cal-weekday.sun {
+  color: #ef4444;
+}
+
+.mini-cal-day {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  color: #374151;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.mini-cal-day.active-day {
+  cursor: pointer;
+  background: #fff;
+  border: 1px solid #f3f4f6;
+}
+
+.mini-cal-day.active-day:hover {
+  background: #7c3aed;
+  color: #fff !important;
+  transform: scale(1.08);
+}
+
+.mini-cal-day.empty-day {
+  background: transparent;
+}
+
+/* Calendar Day States */
+
+.mini-cal-day.holiday-res {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.mini-cal-day.holiday-unres {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+.mini-cal-day.sunday {
+  color: #ef4444;
+}
+
+.mini-cal-day.leave-approved {
+  background: #d1fae5;
+  color: #047857;
+}
+
+.mini-cal-day.leave-pending {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.mini-cal-day.draft-range {
+  background: #7c3aed !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 6px -1px rgba(124, 58, 237, 0.4);
+}
+
+.mini-cal-day.draft-start {
+  background: #7c3aed !important;
+  color: #ffffff !important;
+  border: none !important;
+}
+
+/* Legend styling */
+.mini-calendar-legend {
+  font-size: 10px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px 6px;
+  padding-top: 12px;
+  border-top: 1px solid #e5e7eb;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.legend-item .dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legend-item .dot.holiday-res {
+  background: #fee2e2;
+  border: 1px solid #fca5a5;
+}
+
+.legend-item .dot.holiday-unres {
+  background: #dbeafe;
+  border: 1px solid #93c5fd;
+}
+
+.legend-item .dot.leave-approved {
+  background: #d1fae5;
+  border: 1px solid #6ee7b7;
+}
+
+.legend-item .dot.leave-pending {
+  background: #fef3c7;
+  border: 1px solid #fcd34d;
+}
+
+.legend-item .dot.draft-range {
+  background: #7c3aed;
+}

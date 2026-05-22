@@ -126,7 +126,21 @@
 
 .dot.red { background: #fed7d7; border: 1px solid #feb2b2; }
 .dot.blue { background: #bee3f8; border: 1px solid #bee3f8; }
+.dot.green { background: #c6f6d5; border: 1px solid #c6f6d5; }
+.dot.orange { background: #feebc8; border: 1px solid #feebc8; }
 .text.red { color: #c53030; }
+
+.approved-leave {
+  background: #c6f6d5;
+  color: #22543d;
+  font-weight: 800;
+}
+
+.pending-leave {
+  background: #feebc8;
+  color: #744210;
+  font-weight: 800;
+}
 
 @media (max-width: 1200px) {
   .year-grid { grid-template-columns: repeat(3, 1fr); }

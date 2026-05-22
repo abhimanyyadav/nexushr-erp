@@ -3,6 +3,7 @@ import "./Holidays.css";
 
 const Holidays = () => {
   const [holidays, setHolidays] = useState([]);
+  const [myLeaves, setMyLeaves] = useState([]);
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const targetYear = 2026;
@@ -27,6 +28,15 @@ const Holidays = () => {
   useEffect(() => {
     fetchHolidays();
     fetchUser();
+
+    const fetchMyLeaves = async () => {
+      try {
+        const res = await fetch((window.API_BASE_URL || (window.API_BASE_URL || "http://localhost:8080")) + "/api/leave/my-leaves", { credentials: "include" });
+        const data = await res.json();
+        if (res.ok) setMyLeaves(data);
+      } catch (err) { console.log(err); }
+    };
+    fetchMyLeaves();
   }, []);
 
   const handleDayClick = async (month, day) => {
@@ -51,6 +61,19 @@ const Holidays = () => {
     });
   };
 
+  const getLeaveOnDay = (month, day) => {
+    if (!day) return null;
+    const dateObj = new Date(targetYear, month, day);
+    dateObj.setHours(0, 0, 0, 0);
+    return myLeaves.find(leave => {
+      const fromL = new Date(leave.fromDate);
+      fromL.setHours(0, 0, 0, 0);
+      const toL = new Date(leave.toDate);
+      toL.setHours(0, 0, 0, 0);
+      return dateObj >= fromL && dateObj <= toL && leave.status !== "rejected";
+    });
+  };
+
   const renderMonth = (monthIndex) => {
     const monthName = new Date(targetYear, monthIndex).toLocaleString('default', { month: 'long' }).toUpperCase();
     const totalDays = new Date(targetYear, monthIndex + 1, 0).getDate();
@@ -70,14 +93,24 @@ const Holidays = () => {
           {days.map((day, i) => {
             const isSunday = i % 7 === 0 && day !== null;
             const holiday = getHolidayOnDay(monthIndex, day);
-            const holidayClass = holiday 
-              ? (holiday.type === "Reserved" ? "res-h" : "unres-h")
-              : "";
+            const leave = getLeaveOnDay(monthIndex, day);
+            
+            let highlightClass = "";
+            let titleAttr = "";
+            
+            if (holiday) {
+              highlightClass = holiday.type === "Reserved" ? "res-h" : "unres-h";
+              titleAttr = `${holiday.title} (${holiday.type})`;
+            } else if (leave) {
+              highlightClass = leave.status === "approved" ? "approved-leave" : "pending-leave";
+              titleAttr = `${leave.leaveType} (${leave.status})`;
+            }
             
             return (
               <div 
                 key={i} 
-                className={`mini-day ${!day ? 'empty' : ''} ${isSunday ? 'sun-text' : ''} ${holidayClass} ${user?.role === 'admin' ? 'adm-ptr' : ''}`}
+                className={`mini-day ${!day ? 'empty' : ''} ${isSunday ? 'sun-text' : ''} ${highlightClass} ${user?.role === 'admin' ? 'adm-ptr' : ''}`}
+                title={titleAttr}
                 onClick={() => handleDayClick(monthIndex, day)}
               >
                 {day}
@@ -102,6 +135,8 @@ const Holidays = () => {
       <div className="calendar-footer">
         <div className="footer-item"><span className="dot red"></span> Reserved Holiday (Salary Deduction for Extra Offs)</div>
         <div className="footer-item"><span className="dot blue"></span> Unreserved Holiday (No Salary Deduction)</div>
+        <div className="footer-item"><span className="dot green"></span> Approved Leave</div>
+        <div className="footer-item"><span className="dot orange"></span> Pending Leave</div>
         <div className="footer-item"><span className="text red">1, 8, 15...</span> Sundays (Holidays)</div>
       </div>
     </div>
