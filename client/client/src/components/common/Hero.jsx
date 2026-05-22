@@ -37,13 +37,15 @@ const Hero = () => {
           <Link
             to="/login"
             className="btn-primary"
+            onClick={() => alert("Login first")}
           >
             Access Dashboard →
           </Link>
 
           <Link
-            to="/register"
+            to="/login"
             className="btn-secondary"
+            onClick={() => alert("Login first")}
           >
             Start Free Trial
           </Link>
